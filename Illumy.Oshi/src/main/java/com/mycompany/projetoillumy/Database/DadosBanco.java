@@ -21,7 +21,7 @@ public class DadosBanco {
     public void validaUser() throws SQLException{
         
      Connection con = new ConnectionFactory().getConnection();
-     PreparedStatement stmt = con.prepareStatement("select nomeUser from usuario");
+     PreparedStatement stmt = con.prepareStatement("select NomeUser from usuario");
 
 
      
@@ -49,7 +49,7 @@ public class DadosBanco {
     public void validaPass() throws SQLException{
         
      Connection con = new ConnectionFactory().getConnection();
-     PreparedStatement stmt = con.prepareStatement("select senha from usuario");
+     PreparedStatement stmt = con.prepareStatement("select Senha from usuario");
 
      
 

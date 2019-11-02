@@ -8,12 +8,12 @@ public class InsertDisco {
     
     protected String disponivel;
     protected String total;
-    protected String fkServidor;
+    protected Integer fkServidor;
 
     public InsertDisco(String disponivel, String total) {
     this.disponivel = disponivel;                
     this.total = total;                              
-    this.fkServidor = "12";                              
+    this.fkServidor = 1;                              
     }
 
     public void InsertDisco() {

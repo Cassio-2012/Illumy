@@ -60,3 +60,4 @@ typings/
 # next.js build output
 .next
 /Aplicação-JAVA/oshi-illumy/illumy-oshi/target/
+/Illumy.Oshi/target/

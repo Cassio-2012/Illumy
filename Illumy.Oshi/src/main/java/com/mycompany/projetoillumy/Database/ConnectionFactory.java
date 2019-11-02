@@ -14,9 +14,10 @@ public class ConnectionFactory {
    public Connection getConnection() {
         try {
             return DriverManager.getConnection(
-                    "jdbc:sqlserver://srvillumy.database.windows.net:1433;database=Projeto illumy;"
-                    + "user=userillumy@srvillumy;password={#Gfgrupo4};encrypt=true;trustServerCertificate=false;"
-                    + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+         "jdbc:sqlserver://servidorlucas.database.windows.net:1433;"
+         + "database=Banco projeto;user=Aluno01191094@servidorlucas;"
+         + "password={#Gf46849632841};encrypt=true;trustServerCertificate=false;"
+         + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
         } catch (SQLException e) {
             throw new RuntimeException(e);     
         }
