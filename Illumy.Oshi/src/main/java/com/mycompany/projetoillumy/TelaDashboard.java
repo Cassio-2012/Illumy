@@ -9,11 +9,13 @@ import com.mycompany.projetoillumy.oshi.Memoria;
 import com.mycompany.projetoillumy.oshi.Processador;
 import com.mycompany.projetoillumy.oshi.Processos;
 import com.mycompany.projetoillumy.oshi.SistemaOperacional;
+import com.mycompany.projetoillumy.oshi.ToInteger;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.TimerTask;
 import java.util.Timer;
 import oshi.SystemInfo;
+import oshi.hardware.GlobalMemory;
 
 public class TelaDashboard extends javax.swing.JFrame {
 
@@ -24,6 +26,7 @@ public class TelaDashboard extends javax.swing.JFrame {
     private final SistemaOperacional sistemaOperacional;
     private final Hardware hardware;
     private final SystemInfo systemInfo;
+    private final ToInteger toInteger;
 
     public TelaDashboard() {
         systemInfo = new SystemInfo();
@@ -33,6 +36,7 @@ public class TelaDashboard extends javax.swing.JFrame {
         processos = new Processos();
         sistemaOperacional = new SistemaOperacional();
         hardware = new Hardware();
+        toInteger = new ToInteger();
         initComponents();
     }
 
@@ -79,6 +83,7 @@ public class TelaDashboard extends javax.swing.JFrame {
                     InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
 
                     insert.insertCPU();
+                                                                          
 
                 }
             }, 1200, 5000);
@@ -116,12 +121,18 @@ public class TelaDashboard extends javax.swing.JFrame {
 
                 public void run() {
 
-                    String total = String.valueOf(memoria.getMemoriaTotal(systemInfo.getHardware().getMemory()));
-                    String livre = String.valueOf(memoria.getMemoriaDisponivel(systemInfo.getHardware().getMemory()));
+                    Double total = toInteger.getMemoriaTotalInteger();
+                    Double  livre = toInteger.getMemoriaDispInteger();
+                    Double  usada = toInteger.getTamanhoUsadoRam();
+                    long  usadaPorcentagem = toInteger.getPorcentagemUsadoRam();
+                    long  livrePorcentagem = toInteger.getPorcentagemLivreRam();
 
-                    InsertRam insert = new InsertRam(livre, total);
+
+                    InsertRam insert = new InsertRam(livre, total, usada,
+                            usadaPorcentagem, livrePorcentagem);
 
                     insert.InsertRam();
+                                        
 
                 }
             }, 1200, 5000);
@@ -139,10 +150,15 @@ public class TelaDashboard extends javax.swing.JFrame {
 
                 public void run() {
 
-                    String total = String.valueOf(armazenamento.getDiscoTotal());
-                    String livre = String.valueOf(armazenamento.getDiscoDisponivel());
+                    Double total = toInteger.getArmazenamentoTotalInt();
+                    Double livre = toInteger.getArmazenamentoLivreInt();
+                    Double usado = toInteger.getTamanhoUsadoDisco();
+                    long  usadoPorcentagem = toInteger.getPorcentagemUsadoDisco();
+                    long  livrePorcentagem = toInteger.getPorcentagemLivreDisco();
+                    
 
-                    InsertDisco insert = new InsertDisco(livre, total);
+                    InsertDisco insert = new InsertDisco(livre, total, usado,
+                            usadoPorcentagem, livrePorcentagem);
 
                     insert.InsertDisco();
 
