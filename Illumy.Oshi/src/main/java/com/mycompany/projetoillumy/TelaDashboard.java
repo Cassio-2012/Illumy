@@ -1,18 +1,19 @@
 package com.mycompany.projetoillumy;
 
-import com.mycompany.projetoillumy.oshi.Armazenamento;
-import com.mycompany.projetoillumy.oshi.Hardware;
+import Illumy.Model.Armazenamento;
+import Illumy.Model.Hardware;
 import com.mycompany.projetoillumy.oshi.InsertCPU;
 import com.mycompany.projetoillumy.oshi.InsertDisco;
 import com.mycompany.projetoillumy.oshi.InsertRam;
-import com.mycompany.projetoillumy.oshi.Memoria;
-import com.mycompany.projetoillumy.oshi.Processador;
-import com.mycompany.projetoillumy.oshi.Processos;
-import com.mycompany.projetoillumy.oshi.SistemaOperacional;
+import Illumy.Model.Memoria;
+import Illumy.Model.Processador;
+import Illumy.Model.Processos;
+import Illumy.Model.SistemaOperacional;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.TimerTask;
 import java.util.Timer;
+import javax.swing.JLabel;
 import oshi.SystemInfo;
 
 public class TelaDashboard extends javax.swing.JFrame {
@@ -29,7 +30,7 @@ public class TelaDashboard extends javax.swing.JFrame {
         systemInfo = new SystemInfo();
         memoria = new Memoria();
         processador = new Processador();
-        armazenamento = new Armazenamento(systemInfo.getOperatingSystem().getFileSystem());
+        armazenamento = new Armazenamento();
         processos = new Processos();
         sistemaOperacional = new SistemaOperacional();
         hardware = new Hardware();
@@ -48,14 +49,14 @@ public class TelaDashboard extends javax.swing.JFrame {
             new Timer().scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    lbMemoriaDisponivel.setText(memoria.getMemoriaDisponivel(systemInfo.getHardware().getMemory()));
-                    lbMemoriaTotal.setText(memoria.getMemoriaTotal(systemInfo.getHardware().getMemory()));
+                    lbMemoriaDisponivel.setText(memoria.getMemoriaDisponivel());
+                    lbMemoriaTotal.setText(memoria.getMemoriaTotal());
                     lbArmazenamentoTotal.setText(armazenamento.getDiscoTotal());
                     lbArmazenamentoDisponivel.setText(armazenamento.getDiscoDisponivel());
-                    lbUsoProcessador.setText(processador.getUtilizacaoAtualProcessador(systemInfo.getHardware().getProcessor()));
+                    lbUsoProcessador.setText(processador.getUtilizacaoAtualProcessador());
                     lbNucleos.setText(processador.getThreadsAtivos());
                     lbTemperatura.setText(processador.getTemperaturaCpu());
-                    txaProcessos.setText(processos.getProcessos(systemInfo.getHardware().getMemory()));
+                    txaProcessos.setText(processos.getProcessos());
                 }
             }, 0, 5000);
         } catch (Exception ex) {
@@ -74,7 +75,7 @@ public class TelaDashboard extends javax.swing.JFrame {
 
                     String modCPU = String.valueOf(hardware.getModeloCPU());
                     String tempCPU = String.valueOf(processador.getTemperaturaCpu());
-                    String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador(systemInfo.getHardware().getProcessor()));
+                    String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador());
 
                     InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
 
@@ -116,8 +117,8 @@ public class TelaDashboard extends javax.swing.JFrame {
 
                 public void run() {
 
-                    String total = String.valueOf(memoria.getMemoriaTotal(systemInfo.getHardware().getMemory()));
-                    String livre = String.valueOf(memoria.getMemoriaDisponivel(systemInfo.getHardware().getMemory()));
+                    String total = String.valueOf(memoria.getMemoriaTotal());
+                    String livre = String.valueOf(memoria.getMemoriaDisponivel());
 
                     InsertRam insert = new InsertRam(livre, total);
 
@@ -581,6 +582,12 @@ public class TelaDashboard extends javax.swing.JFrame {
 
     }
 
+    public String setLbMarcaSO(JLabel lbMarcaSO) {
+        this.lbMarcaSO = lbMarcaSO;
+        return "";
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnProvisionar;

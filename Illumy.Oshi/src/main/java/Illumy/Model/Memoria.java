@@ -1,23 +1,22 @@
-package com.mycompany.projetoillumy.oshi;
+package Illumy.Model;
 
-import oshi.SystemInfo;
 import oshi.hardware.GlobalMemory;
 import oshi.util.FormatUtil;
 
-public class Memoria {
+public class Memoria extends AtributosOshi {
 
-    private final SystemInfo systemInfo;
+    private final GlobalMemory memoria;
 
     public Memoria() {
-        systemInfo = new SystemInfo();
+        this.memoria = systemInfo.getHardware().getMemory();
     }
 
     //Valores de atualização por tempo
-    public String getMemoriaDisponivel(GlobalMemory memoria) {
+    public String getMemoriaDisponivel() {
         return FormatUtil.formatBytes(memoria.getAvailable());
     }
 
-    public String getMemoriaTotal(GlobalMemory memoria) {
+    public String getMemoriaTotal() {
         return FormatUtil.formatBytes(memoria.getTotal());
     }
     //FIM //Valores de atualização por tempo

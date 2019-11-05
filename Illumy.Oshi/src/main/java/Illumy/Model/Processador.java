@@ -1,0 +1,30 @@
+package Illumy.Model;
+
+import oshi.hardware.CentralProcessor;
+import oshi.util.Util;
+
+public class Processador extends AtributosOshi {
+
+    private final CentralProcessor processador;
+
+    public Processador() {
+        processador = systemInfo.getHardware().getProcessor();
+    }
+
+    //Valores de atualização por tempo
+    public String getUtilizacaoAtualProcessador() {
+        long[] ticks = processador.getSystemCpuLoadTicks();
+        Util.sleep(1000);
+        return String.format("%.1f%%", processador.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        //return String.format("%.1f%%", hardware.getProcessor().getSystemCpuLoad() * 100);
+    }
+
+    public String getThreadsAtivos() {
+        return String.valueOf(systemInfo.getOperatingSystem().getThreadCount());
+    }
+
+    public String getTemperaturaCpu() {
+        return String.format("%.1f ºC", hardware.getSensors().getCpuTemperature());
+    }
+    //FIM Valores de atualização por tempo
+}
