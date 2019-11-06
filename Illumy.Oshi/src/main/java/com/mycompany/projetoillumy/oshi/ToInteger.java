@@ -11,6 +11,7 @@ public class ToInteger {
   
    SystemInfo systemInfo = new SystemInfo(); 
    Memoria memoria = new Memoria();
+   Processador processador = new Processador();
    Armazenamento armazenamento = new Armazenamento(systemInfo.getOperatingSystem().getFileSystem());
        
 
@@ -59,12 +60,23 @@ public class ToInteger {
         return discoTotalInt;
         
     }
+    public Double getUsoCpuInt() {
+        
+    String discoTotal = String.valueOf(processador.getUtilizacaoAtualProcessador(systemInfo.getHardware().getProcessor()));
+   
+    String m = discoTotal.replace("%", "").replaceAll(",", ".");
+        
+    Double discoTotalInt = Double.parseDouble(m);
+        
+        return discoTotalInt;
+        
+    }
 
     public Double getTamanhoUsadoRam() {
       
      Double total = getMemoriaTotalInteger();
      Double livre = getMemoriaDispInteger();
-     
+         
  //     #tamanho total em GB   
      Double usado = (total *1024) - livre;
      
@@ -75,19 +87,19 @@ public class ToInteger {
      Double total = getArmazenamentoTotalInt();
      Double livre = getArmazenamentoLivreInt();
      
-//     #tamanho total em GB
-     Double usado = (total *1024) - livre; 
+     
+     Double usado = total - livre; 
      
         return usado;
     }
-    public long getPorcentagemUsadoRam() {
+    public long getPorcentagemUsadaRam() {
       
         Double total = getMemoriaTotalInteger();
         Double usado = getTamanhoUsadoRam();
         
-        Double porcentagem = ((usado / (total *1024)) *100);
         
-     
+        Double porcentagem = ((usado / (total *1024)) *100);
+             
         
         return Math.round(porcentagem);
     }
@@ -100,12 +112,12 @@ public class ToInteger {
         
         return Math.round(porcentagem);
     }
-    public long getPorcentagemUsadoDisco() {
+    public long getPorcentagemUsadaDisco() {
       
         Double total = getArmazenamentoTotalInt();
         Double usado = getTamanhoUsadoDisco();
         
-        Double porcentagem = ((usado / (total *1024)) *100);
+        Double porcentagem = ((usado / total) *100);
         
         return Math.round(porcentagem);
     }
@@ -118,7 +130,7 @@ public class ToInteger {
         Double porcentagem = ((livre / (total *1024)) *100);
         
         return Math.round(porcentagem);
-    }
+    }   
     
           
 }

@@ -74,16 +74,15 @@ public class TelaDashboard extends javax.swing.JFrame {
 
             timer.scheduleAtFixedRate(new TimerTask() {
 
+                @Override
                 public void run() {
-
-                    String modCPU = String.valueOf(hardware.getModeloCPU());
+   
                     String tempCPU = String.valueOf(processador.getTemperaturaCpu());
-                    String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador(systemInfo.getHardware().getProcessor()));
+                    Double usoCPU = toInteger.getUsoCpuInt();
 
-                    InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
+                    InsertCPU insert = new InsertCPU(usoCPU, tempCPU);
 
-                    insert.insertCPU();
-                                                                          
+                    insert.insertCPU();                                                                          
 
                 }
             }, 1200, 5000);
@@ -119,12 +118,13 @@ public class TelaDashboard extends javax.swing.JFrame {
 
             timer.scheduleAtFixedRate(new TimerTask() {
 
+                @Override
                 public void run() {
 
                     Double total = toInteger.getMemoriaTotalInteger();
                     Double  livre = toInteger.getMemoriaDispInteger();
                     Double  usada = toInteger.getTamanhoUsadoRam();
-                    long  usadaPorcentagem = toInteger.getPorcentagemUsadoRam();
+                    long  usadaPorcentagem = toInteger.getPorcentagemUsadaRam();
                     long  livrePorcentagem = toInteger.getPorcentagemLivreRam();
 
 
@@ -148,12 +148,13 @@ public class TelaDashboard extends javax.swing.JFrame {
 
             timer.scheduleAtFixedRate(new TimerTask() {
 
+                @Override
                 public void run() {
 
                     Double total = toInteger.getArmazenamentoTotalInt();
                     Double livre = toInteger.getArmazenamentoLivreInt();
                     Double usado = toInteger.getTamanhoUsadoDisco();
-                    long  usadoPorcentagem = toInteger.getPorcentagemUsadoDisco();
+                    long  usadoPorcentagem = toInteger.getPorcentagemUsadaDisco();
                     long  livrePorcentagem = toInteger.getPorcentagemLivreDisco();
                     
 
