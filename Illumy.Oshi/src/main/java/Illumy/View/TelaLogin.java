@@ -1,6 +1,7 @@
-package com.mycompany.projetoillumy;
+package Illumy.View;
 
 import com.mycompany.projetoillumy.Database.DadosBanco;
+import com.mycompany.projetoillumy.Tela;
 import java.awt.Color;
 import java.net.URL;
 import java.sql.SQLException;
@@ -201,7 +202,7 @@ public class TelaLogin extends javax.swing.JFrame {
         Integer validacao = conecta.getFator();
 
         if (validacao > 1) {
-            new TelaDashboard().setVisible(true);
+            new DashboardView().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btEntrarActionPerformed
      else {

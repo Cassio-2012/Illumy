@@ -1,17 +1,15 @@
 package Illumy.Controller;
 
-import com.mycompany.projetoillumy.TelaDashboard;
-import javax.swing.JLabel;
+import Illumy.Model.ExibicaoDadosModel;
+import Illumy.View.DashboardView;
 
 public class DadosController {
-
-    TelaDashboard tela = new TelaDashboard();
-    JLabel lb = new JLabel();
-
-    public String alo() {
-        lb.setText("aadasdwa");
-        tela.setLbMarcaSO(lb);
-        return "";
+    
+    ExibicaoDadosModel exibicaoDadosModel;
+    
+    public DadosController(DashboardView view) {
+        exibicaoDadosModel = new ExibicaoDadosModel(view);
+        exibicaoDadosModel.ExibeDados();
     }
- 
+    
 }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.projetoillumy;
 
+import Illumy.View.DashboardView;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -241,7 +242,7 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_btProvisionarActionPerformed
 
     private void btnMonitorarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMonitorarMouseClicked
-        new TelaDashboard().setVisible(true);
+        new DashboardView().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMonitorarMouseClicked
 

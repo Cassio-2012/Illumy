@@ -1,5 +1,6 @@
-package com.mycompany.projetoillumy;
+package Illumy.View;
 
+import Illumy.Controller.DadosController;
 import Illumy.Model.Armazenamento;
 import Illumy.Model.Hardware;
 import com.mycompany.projetoillumy.oshi.InsertCPU;
@@ -9,14 +10,16 @@ import Illumy.Model.Memoria;
 import Illumy.Model.Processador;
 import Illumy.Model.Processos;
 import Illumy.Model.SistemaOperacional;
+import com.mycompany.projetoillumy.Tela;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.TimerTask;
 import java.util.Timer;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import oshi.SystemInfo;
 
-public class TelaDashboard extends javax.swing.JFrame {
+public class DashboardView extends javax.swing.JFrame {
 
     private final Memoria memoria;
     private final Processador processador;
@@ -26,7 +29,7 @@ public class TelaDashboard extends javax.swing.JFrame {
     private final Hardware hardware;
     private final SystemInfo systemInfo;
 
-    public TelaDashboard() {
+    public DashboardView() {
         systemInfo = new SystemInfo();
         memoria = new Memoria();
         processador = new Processador();
@@ -35,6 +38,7 @@ public class TelaDashboard extends javax.swing.JFrame {
         sistemaOperacional = new SistemaOperacional();
         hardware = new Hardware();
         initComponents();
+        DadosController dadosController = new DadosController(this);
     }
 
     public void exibeDados() {
@@ -50,12 +54,12 @@ public class TelaDashboard extends javax.swing.JFrame {
                 @Override
                 public void run() {
                     lbMemoriaDisponivel.setText(memoria.getMemoriaDisponivel());
-                    lbMemoriaTotal.setText(memoria.getMemoriaTotal());
-                    lbArmazenamentoTotal.setText(armazenamento.getDiscoTotal());
+                    //lbMemoriaTotal.setText(memoria.getMemoriaTotal());
+                    //lbArmazenamentoTotal.setText(armazenamento.getDiscoTotal());
                     lbArmazenamentoDisponivel.setText(armazenamento.getDiscoDisponivel());
-                    lbUsoProcessador.setText(processador.getUtilizacaoAtualProcessador());
-                    lbNucleos.setText(processador.getThreadsAtivos());
-                    lbTemperatura.setText(processador.getTemperaturaCpu());
+                    //lbUsoProcessador.setText(processador.getUtilizacaoAtualProcessador());
+                    //lbNucleos.setText(processador.getThreadsAtivos());
+                    // lbTemperatura.setText(processador.getTemperaturaCpu());
                     txaProcessos.setText(processos.getProcessos());
                 }
             }, 0, 5000);
@@ -531,13 +535,13 @@ public class TelaDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                TelaDashboard tela = new TelaDashboard();
+                DashboardView tela = new DashboardView();
                 tela.setVisible(true);
                 tela.addWindowListener(new WindowListener() {
 
@@ -582,11 +586,25 @@ public class TelaDashboard extends javax.swing.JFrame {
 
     }
 
-    public String setLbMarcaSO(JLabel lbMarcaSO) {
-        this.lbMarcaSO = lbMarcaSO;
-        return "";
+    public JLabel getLbTemperatura() {
+        return lbTemperatura;
     }
 
+    public JLabel getLbUsoProcessador() {
+        return lbUsoProcessador;
+    }
+
+    public JLabel getLbArmazenamentoDisponivel() {
+        return lbArmazenamentoDisponivel;
+    }
+
+    public JLabel getLbMemoriaDisponivel() {
+        return lbMemoriaDisponivel;
+    }
+
+    public JTextArea getTxaProcessos() {
+        return txaProcessos;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
