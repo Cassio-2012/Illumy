@@ -1,0 +1,17 @@
+.container-mother{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.borderr{
+    border: solid rgb(0, 119, 255) 1px;
+    height: 270px;
+    width: 45%;
+}
+
+.chart-line-one, .chart-line-two{
+    display: flex;
+    justify-content: space-around
+}
