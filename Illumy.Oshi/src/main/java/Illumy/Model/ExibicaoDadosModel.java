@@ -18,10 +18,12 @@ public class ExibicaoDadosModel {
         processos = new Processos();
     }
     
-    public void ExibeDados(){
+    public void exibeDados(){
+        view.getLbMemoriaTotal().setText(memoria.getMemoriaTotal());
         view.getLbUsoProcessador().setText(processador.getUtilizacaoAtualProcessador());
         view.getLbMemoriaDisponivel().setText(memoria.getMemoriaDisponivel());
         view.getLbArmazenamentoDisponivel().setText(disco.getDiscoDisponivel());
+        view.getLbArmazenamentoTotal().setText(disco.getDiscoTotal());
         view.getTxaProcessos().setText(processos.getProcessos());
     }
 

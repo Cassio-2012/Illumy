@@ -31,6 +31,7 @@ public class DashboardView extends javax.swing.JFrame {
         processos = new Processos();
         initComponents();
         DadosController dadosController = new DadosController(this);
+        dadosController.configuraTimer();
     }
 
     public void exibeDados() {
@@ -385,9 +386,9 @@ public class DashboardView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        exibeDados();
-        insertRAM();
-        insertDISCO();
+       // exibeDados();
+       // insertRAM();
+        //insertDISCO();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
@@ -415,9 +416,9 @@ public class DashboardView extends javax.swing.JFrame {
 
                     @Override
                     public void windowOpened(WindowEvent we) {
-                        tela.exibeDados();
-                        tela.insertRAM();
-                        tela.insertDISCO();
+                        //tela.exibeDados();
+                       // tela.insertRAM();
+                       //tela.insertDISCO();
                     }
 
                     @Override
@@ -438,9 +439,9 @@ public class DashboardView extends javax.swing.JFrame {
 
                     @Override
                     public void windowActivated(WindowEvent we) {
-                        tela.exibeDados();
-                        tela.insertRAM();
-                        tela.insertDISCO();
+                       // tela.exibeDados();
+                       // tela.insertRAM();
+                        //tela.insertDISCO();
                     }
 
                     @Override
@@ -468,7 +469,14 @@ public class DashboardView extends javax.swing.JFrame {
         return txaProcessos;
     }
 
+    public JLabel getLbArmazenamentoTotal() {
+        return lbArmazenamentoTotal;
+    }
 
+    public JLabel getLbMemoriaTotal() {
+        return lbMemoriaTotal;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnSair;
     private javax.swing.JLabel jLabel1;
