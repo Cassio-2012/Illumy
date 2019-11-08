@@ -7,15 +7,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class InsertCPU {
     
-    protected String usoCPU;
-    protected String modCPU;
-    protected String tempCPU;
+    protected Double usoCPU;       
     protected Integer fkServidor;
 
-    public InsertCPU(String usoCPU, String modCPU,String tempCPU) {
-    this.usoCPU = usoCPU;                
-    this.modCPU = modCPU;                
-    this.tempCPU = tempCPU;                
+    public InsertCPU(Double usoCPU){
+    this.usoCPU = usoCPU;                                                     
     this.fkServidor = 1;                
     }
 
@@ -27,8 +23,8 @@ public class InsertCPU {
    
         try {
            jdbcTemplate.update(
-                "insert into CPU (utilizacaoAtual, ModProcessador, TempCPU, fkServidor)"
-                + "values(?,?,?,?)", usoCPU, modCPU, tempCPU,fkServidor);
+                "insert into CPU (utilizacaoAtual, TempCPU, fkServidor)"
+                + "values(?,?)", usoCPU,fkServidor);
              
         } catch (Exception e) {
             System.out.println("Erro"+e);

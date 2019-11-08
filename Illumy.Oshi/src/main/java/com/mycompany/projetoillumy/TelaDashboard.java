@@ -5,15 +5,20 @@ import com.mycompany.projetoillumy.oshi.Hardware;
 import com.mycompany.projetoillumy.oshi.InsertCPU;
 import com.mycompany.projetoillumy.oshi.InsertDisco;
 import com.mycompany.projetoillumy.oshi.InsertRam;
+import com.mycompany.projetoillumy.oshi.data.IntCpu;
+import com.mycompany.projetoillumy.oshi.data.IntDisco;
+import com.mycompany.projetoillumy.oshi.data.IntRam;
 import com.mycompany.projetoillumy.oshi.Memoria;
 import com.mycompany.projetoillumy.oshi.Processador;
 import com.mycompany.projetoillumy.oshi.Processos;
 import com.mycompany.projetoillumy.oshi.SistemaOperacional;
+import com.mycompany.projetoillumy.oshi.data.ToInteger;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.TimerTask;
 import java.util.Timer;
 import oshi.SystemInfo;
+import oshi.hardware.GlobalMemory;
 
 public class TelaDashboard extends javax.swing.JFrame {
 
@@ -24,6 +29,7 @@ public class TelaDashboard extends javax.swing.JFrame {
     private final SistemaOperacional sistemaOperacional;
     private final Hardware hardware;
     private final SystemInfo systemInfo;
+    private final ToInteger toInteger;
 
     public TelaDashboard() {
         systemInfo = new SystemInfo();
@@ -33,6 +39,7 @@ public class TelaDashboard extends javax.swing.JFrame {
         processos = new Processos();
         sistemaOperacional = new SistemaOperacional();
         hardware = new Hardware();
+        toInteger = new ToInteger();        
         initComponents();
     }
 
@@ -67,21 +74,23 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         try {
             Timer timer = new Timer();
+            IntCpu porcentagemCPU = new IntCpu();
 
             timer.scheduleAtFixedRate(new TimerTask() {
 
+                @Override
                 public void run() {
+                    
+                    
+                     
+                    Double usoCPU = porcentagemCPU.getUsoCpuInt();
 
-                    String modCPU = String.valueOf(hardware.getModeloCPU());
-                    String tempCPU = String.valueOf(processador.getTemperaturaCpu());
-                    String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador(systemInfo.getHardware().getProcessor()));
+                    InsertCPU insert = new InsertCPU(usoCPU);
 
-                    InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
-
-                    insert.insertCPU();
+                    insert.insertCPU();                                                                          
 
                 }
-            }, 1200, 5000);
+            }, 60000, 60000);
         } catch (Exception e) {
             System.out.println("Erro ao inserir" + e);
         }
@@ -111,20 +120,28 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         try {
             Timer timer = new Timer();
-
+            IntRam ram = new IntRam();
+            
             timer.scheduleAtFixedRate(new TimerTask() {
 
+                @Override
                 public void run() {
 
-                    String total = String.valueOf(memoria.getMemoriaTotal(systemInfo.getHardware().getMemory()));
-                    String livre = String.valueOf(memoria.getMemoriaDisponivel(systemInfo.getHardware().getMemory()));
+                    Double total = ram.getMemoriaTotalInteger();
+                    Double  livre = ram.getMemoriaDispInteger();
+                    Double  usada = ram.getTamanhoUsadoRam();
+                    long  usadaPorcentagem = ram.getPorcentagemUsadaRam();
+                    long  livrePorcentagem = ram.getPorcentagemLivreRam();
 
-                    InsertRam insert = new InsertRam(livre, total);
+
+                    InsertRam insert = new InsertRam(livre, total, usada,
+                            usadaPorcentagem, livrePorcentagem);
 
                     insert.InsertRam();
+                                        
 
                 }
-            }, 1200, 5000);
+            }, 60000, 60000);
         } catch (Exception e) {
             System.out.println("Erro ao inserir" + e);
         }
@@ -134,20 +151,27 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         try {
             Timer timer = new Timer();
+            IntDisco disco = new IntDisco();
 
             timer.scheduleAtFixedRate(new TimerTask() {
 
+                @Override
                 public void run() {
 
-                    String total = String.valueOf(armazenamento.getDiscoTotal());
-                    String livre = String.valueOf(armazenamento.getDiscoDisponivel());
+                    Double total = disco.getArmazenamentoTotalInt();
+                    Double livre = disco.getArmazenamentoLivreInt();
+                    Double usado = disco.getTamanhoUsadoDisco();
+                    long  usadoPorcentagem = disco.getPorcentagemUsadaDisco();
+                    long  livrePorcentagem = disco.getPorcentagemLivreDisco();
+                    
 
-                    InsertDisco insert = new InsertDisco(livre, total);
+                    InsertDisco insert = new InsertDisco(livre, total, usado,
+                            usadoPorcentagem, livrePorcentagem);
 
                     insert.InsertDisco();
 
                 }
-            }, 1200, 5000);
+            }, 60000, 60000);
         } catch (Exception e) {
             System.out.println("Erro ao inserir" + e);
         }

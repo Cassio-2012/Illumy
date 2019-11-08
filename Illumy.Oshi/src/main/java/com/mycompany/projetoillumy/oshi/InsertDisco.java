@@ -6,15 +6,26 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class InsertDisco {
     
-    protected String disponivel;
-    protected String total;
+    protected Double disponivel;
+    protected Double total;
     protected Integer fkServidor;
+    protected Double tamanhoUsado;
+    protected long tamanhoUsadoPorcentagem;
+    protected long espacoLivrePorcentagem;
 
-    public InsertDisco(String disponivel, String total) {
+    public InsertDisco(Double disponivel, Double total, Double tamanhoUsado,
+            long tamanhoUsadoPorcentagem, long espacoLivrePorcentagem) {
+        
     this.disponivel = disponivel;                
     this.total = total;                              
-    this.fkServidor = 1;                              
+    this.tamanhoUsado = tamanhoUsado;                              
+    this.tamanhoUsadoPorcentagem = tamanhoUsadoPorcentagem;                              
+    this.espacoLivrePorcentagem = espacoLivrePorcentagem;                              
+    this.fkServidor = 1;    
+    
     }
+
+   
 
     public void InsertDisco() {
         
@@ -24,8 +35,10 @@ public class InsertDisco {
    
         try {
            jdbcTemplate.update(
-                "insert into disco (espacoLivreGB, tamanhoTotalGB, fkServidor)"
-                + "values(?,?,?)", disponivel, total, fkServidor);
+                "insert into disco (espacoLivreGB, tamanhoTotalGB, tamanhoUsadoGB,"
+                        + " tamanhoUsadoPorcentagem, espacoLivrePorcentagem, fkServidor)"
+                + "values(?,?,?,?,?,?)", disponivel, total, tamanhoUsado,
+                tamanhoUsadoPorcentagem, espacoLivrePorcentagem, fkServidor);
              
         } catch (Exception e) {
             System.out.println("Erro"+e);

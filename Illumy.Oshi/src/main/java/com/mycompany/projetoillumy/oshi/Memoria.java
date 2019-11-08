@@ -20,5 +20,6 @@ public class Memoria {
     public String getMemoriaTotal(GlobalMemory memoria) {
         return FormatUtil.formatBytes(memoria.getTotal());
     }
-    //FIM //Valores de atualização por tempo
+        
+    //FIM //Valores de atualização por tempos
 }
