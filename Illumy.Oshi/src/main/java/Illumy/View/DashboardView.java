@@ -1,146 +1,18 @@
 package Illumy.View;
 
 import Illumy.Controller.DadosController;
-import Illumy.Model.Armazenamento;
-import com.mycompany.projetoillumy.oshi.InsertDisco;
-import com.mycompany.projetoillumy.oshi.InsertRam;
-import Illumy.Model.Memoria;
-import Illumy.Model.Processador;
-import Illumy.Model.Processos;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.TimerTask;
-import java.util.Timer;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import oshi.SystemInfo;
 
 public class DashboardView extends javax.swing.JFrame {
 
-    private final Memoria memoria;
-    private final Processador processador;
-    private final Armazenamento armazenamento;
-    private final Processos processos;
-    private final SystemInfo systemInfo;
+    DadosController dadosController;
 
     public DashboardView() {
-        systemInfo = new SystemInfo();
-        memoria = new Memoria();
-        processador = new Processador();
-        armazenamento = new Armazenamento();
-        processos = new Processos();
         initComponents();
-        DadosController dadosController = new DadosController(this);
-        dadosController.configuraTimer();
+        dadosController = new DadosController(this);
+        dadosController.iniciaTimer();
     }
-
-    public void exibeDados() {
-        try {
-            new Timer().scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    lbMemoriaDisponivel.setText(memoria.getMemoriaDisponivel());
-                    lbMemoriaTotal.setText(memoria.getMemoriaTotal());
-                    lbArmazenamentoTotal.setText(armazenamento.getDiscoTotal());
-                    lbArmazenamentoDisponivel.setText(armazenamento.getDiscoDisponivel());
-                    lbUsoProcessador.setText(processador.getUtilizacaoAtualProcessador());
-                    txaProcessos.setText(processos.getProcessos());
-                }
-            }, 0, 5000);
-        } catch (Exception ex) {
-            System.out.println("Erro:" + ex);
-        }
-    }
-
-// public void insertCPU() {;
-//
-//      try {
-//        Timer timer = new Timer();
-//
-//          timer.scheduleAtFixedRate(new TimerTask() {
-//
-//              public void run() {
-//
-//                  String modCPU = String.valueOf(hardware.getModeloCPU());
-//                String tempCPU = String.valueOf(processador.getTemperaturaCpu());
-//              String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador());
-//             InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
-//
-//                  insert.insertCPU();
-//
-//              }
-//        }, 1200, 5000);
-//  } catch (Exception e) {
-//    System.out.println("Erro ao inserir" + e);
-//  }
-//  }
-//    public void insertServidor(){
-//        try {
-//            Timer timer = new Timer();
-// 
-//            timer.scheduleAtFixedRate(new TimerTask() {
-//     
-//            public void run() {                
-//                String modSO = String.valueOf(sistemaOperacional.getModeloSO());
-//                String host = String.valueOf(sistemaOperacional.getHostname());
-//                InsertServidor insert = new InsertServidor(modSO, host);
-//                insert.InsertServidor();
-//                timer.cancel();
-//                timer.purge();
-//                
-//        }
-//    }, 200, 10000);
-//        } catch (Exception e) {
-//            System.out.println("Erro ao inserir"+ e);
-//        }
-//    }
-    public void insertRAM() {
-
-        try {
-            Timer timer = new Timer();
-
-            timer.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-
-                    String total = String.valueOf(memoria.getMemoriaTotal());
-                    String livre = String.valueOf(memoria.getMemoriaDisponivel());
-
-                    InsertRam insert = new InsertRam(livre, total);
-
-                    insert.InsertRam();
-
-                }
-            }, 1200, 5000);
-        } catch (Exception e) {
-            System.out.println("Erro ao inserir" + e);
-        }
-    }
-
-    public void insertDISCO() {
-
-        try {
-            Timer timer = new Timer();
-
-            timer.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-
-                    String total = String.valueOf(armazenamento.getDiscoTotal());
-                    String livre = String.valueOf(armazenamento.getDiscoDisponivel());
-
-                    InsertDisco insert = new InsertDisco(livre, total);
-
-                    insert.InsertDisco();
-
-                }
-            }, 1200, 5000);
-        } catch (Exception e) {
-            System.out.println("Erro ao inserir" + e);
-        }
-    }
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -170,13 +42,6 @@ public class DashboardView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                formWindowGainedFocus(evt);
-            }
-            public void windowLostFocus(java.awt.event.WindowEvent evt) {
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(238, 238, 238));
 
@@ -319,8 +184,7 @@ public class DashboardView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(65, 65, 65)
-                                .addComponent(jLabel4)
-                                .addGap(69, 69, 69))
+                                .addComponent(jLabel4))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(203, 203, 203)
                                 .addComponent(jLabel6)
@@ -345,19 +209,19 @@ public class DashboardView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(lbArmazenamentoTotal))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(lbUsoProcessador))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lbMemoriaDisponivel))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(lbArmazenamentoDisponivel))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(lbUsoProcessador))
+                .addGap(46, 46, 46)
                 .addComponent(jLabel16)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -367,7 +231,7 @@ public class DashboardView extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -385,12 +249,6 @@ public class DashboardView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-       // exibeDados();
-       // insertRAM();
-        //insertDISCO();
-    }//GEN-LAST:event_formWindowGainedFocus
-
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnSairMouseClicked
@@ -407,48 +265,9 @@ public class DashboardView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DashboardView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                DashboardView tela = new DashboardView();
-                tela.setVisible(true);
-                tela.addWindowListener(new WindowListener() {
-
-                    @Override
-                    public void windowOpened(WindowEvent we) {
-                        //tela.exibeDados();
-                       // tela.insertRAM();
-                       //tela.insertDISCO();
-                    }
-
-                    @Override
-                    public void windowClosing(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowClosed(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowIconified(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowDeiconified(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowActivated(WindowEvent we) {
-                       // tela.exibeDados();
-                       // tela.insertRAM();
-                        //tela.insertDISCO();
-                    }
-
-                    @Override
-                    public void windowDeactivated(WindowEvent we) {
-                    }
-                });
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            DashboardView tela = new DashboardView();
+            tela.setVisible(true);
         });
 
     }
@@ -476,7 +295,7 @@ public class DashboardView extends javax.swing.JFrame {
     public JLabel getLbMemoriaTotal() {
         return lbMemoriaTotal;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnSair;
     private javax.swing.JLabel jLabel1;

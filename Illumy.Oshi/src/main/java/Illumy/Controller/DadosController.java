@@ -14,7 +14,7 @@ public class DadosController {
         exibicaoDadosModel.exibeDados();
     }
     
-    public void configuraTimer(){
+    public void iniciaTimer(){
          try {
             Timer timer = new Timer();
 
