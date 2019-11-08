@@ -18,13 +18,5 @@ public class Processador extends AtributosOshi {
         return String.format("%.1f%%", processador.getSystemCpuLoadBetweenTicks(ticks) * 100);
         //return String.format("%.1f%%", hardware.getProcessor().getSystemCpuLoad() * 100);
     }
-
-    public String getThreadsAtivos() {
-        return String.valueOf(systemInfo.getOperatingSystem().getThreadCount());
-    }
-
-    public String getTemperaturaCpu() {
-        return String.format("%.1f ºC", hardware.getSensors().getCpuTemperature());
-    }
     //FIM Valores de atualização por tempo
 }

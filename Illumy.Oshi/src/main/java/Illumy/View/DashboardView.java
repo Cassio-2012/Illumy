@@ -2,15 +2,11 @@ package Illumy.View;
 
 import Illumy.Controller.DadosController;
 import Illumy.Model.Armazenamento;
-import Illumy.Model.Hardware;
-import com.mycompany.projetoillumy.oshi.InsertCPU;
 import com.mycompany.projetoillumy.oshi.InsertDisco;
 import com.mycompany.projetoillumy.oshi.InsertRam;
 import Illumy.Model.Memoria;
 import Illumy.Model.Processador;
 import Illumy.Model.Processos;
-import Illumy.Model.SistemaOperacional;
-import com.mycompany.projetoillumy.Tela;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.TimerTask;
@@ -25,8 +21,6 @@ public class DashboardView extends javax.swing.JFrame {
     private final Processador processador;
     private final Armazenamento armazenamento;
     private final Processos processos;
-    private final SistemaOperacional sistemaOperacional;
-    private final Hardware hardware;
     private final SystemInfo systemInfo;
 
     public DashboardView() {
@@ -35,8 +29,6 @@ public class DashboardView extends javax.swing.JFrame {
         processador = new Processador();
         armazenamento = new Armazenamento();
         processos = new Processos();
-        sistemaOperacional = new SistemaOperacional();
-        hardware = new Hardware();
         initComponents();
         DadosController dadosController = new DadosController(this);
     }
@@ -59,30 +51,28 @@ public class DashboardView extends javax.swing.JFrame {
         }
     }
 
-    public void insertCPU() {
-
-        try {
-            Timer timer = new Timer();
-
-            timer.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-
-                    String modCPU = String.valueOf(hardware.getModeloCPU());
-                    String tempCPU = String.valueOf(processador.getTemperaturaCpu());
-                    String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador());
-
-                    InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
-
-                    insert.insertCPU();
-
-                }
-            }, 1200, 5000);
-        } catch (Exception e) {
-            System.out.println("Erro ao inserir" + e);
-        }
-    }
-
+// public void insertCPU() {;
+//
+//      try {
+//        Timer timer = new Timer();
+//
+//          timer.scheduleAtFixedRate(new TimerTask() {
+//
+//              public void run() {
+//
+//                  String modCPU = String.valueOf(hardware.getModeloCPU());
+//                String tempCPU = String.valueOf(processador.getTemperaturaCpu());
+//              String usoCPU = String.valueOf(processador.getUtilizacaoAtualProcessador());
+//             InsertCPU insert = new InsertCPU(usoCPU, modCPU, tempCPU);
+//
+//                  insert.insertCPU();
+//
+//              }
+//        }, 1200, 5000);
+//  } catch (Exception e) {
+//    System.out.println("Erro ao inserir" + e);
+//  }
+//  }
 //    public void insertServidor(){
 //        try {
 //            Timer timer = new Timer();
@@ -396,7 +386,6 @@ public class DashboardView extends javax.swing.JFrame {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         exibeDados();
-        insertCPU();
         insertRAM();
         insertDISCO();
     }//GEN-LAST:event_formWindowGainedFocus
@@ -427,7 +416,6 @@ public class DashboardView extends javax.swing.JFrame {
                     @Override
                     public void windowOpened(WindowEvent we) {
                         tela.exibeDados();
-                        tela.insertCPU();
                         tela.insertRAM();
                         tela.insertDISCO();
                     }
@@ -451,7 +439,6 @@ public class DashboardView extends javax.swing.JFrame {
                     @Override
                     public void windowActivated(WindowEvent we) {
                         tela.exibeDados();
-                        tela.insertCPU();
                         tela.insertRAM();
                         tela.insertDISCO();
                     }
@@ -480,7 +467,7 @@ public class DashboardView extends javax.swing.JFrame {
     public JTextArea getTxaProcessos() {
         return txaProcessos;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnSair;

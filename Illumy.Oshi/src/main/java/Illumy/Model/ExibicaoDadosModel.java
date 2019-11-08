@@ -19,7 +19,6 @@ public class ExibicaoDadosModel {
     }
     
     public void ExibeDados(){
-        //view.getLbTemperatura().setText(processador.getTemperaturaCpu());
         view.getLbUsoProcessador().setText(processador.getUtilizacaoAtualProcessador());
         view.getLbMemoriaDisponivel().setText(memoria.getMemoriaDisponivel());
         view.getLbArmazenamentoDisponivel().setText(disco.getDiscoDisponivel());
