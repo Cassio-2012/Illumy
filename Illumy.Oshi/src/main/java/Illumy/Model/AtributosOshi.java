@@ -19,7 +19,7 @@ public abstract class AtributosOshi {
         this.hardware = systemInfo.getHardware();
         this.sistemaOperacional = systemInfo.getOperatingSystem();
         this.fileSystem = systemInfo.getOperatingSystem().getFileSystem();
-        fileStoreArray = fileSystem.getFileStores();
+       this. fileStoreArray = fileSystem.getFileStores();
     }
 
 }

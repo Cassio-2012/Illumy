@@ -1,4 +1,4 @@
-package com.mycompany.projetoillumy;
+package com.mycompany.illumy.provisionamento;
 
 import java.io.BufferedReader;
 import java.io.IOException;

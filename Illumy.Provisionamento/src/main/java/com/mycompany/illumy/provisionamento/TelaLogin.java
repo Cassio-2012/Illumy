@@ -1,6 +1,5 @@
-package Illumy.View;
+package com.mycompany.illumy.provisionamento;
 
-import com.mycompany.projetoillumy.Database.DadosBanco;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -8,7 +7,7 @@ import java.util.logging.Logger;
 
 public class TelaLogin extends javax.swing.JFrame {
 
-    DashboardView monitora = new DashboardView();
+    Tela monitora = new Tela();
 
     public TelaLogin() {
         initComponents();
@@ -109,10 +108,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario_2.png"))); // NOI18N
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cadeado_2.png"))); // NOI18N
-
         tfSenha.setText("jPasswordField2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -200,7 +195,7 @@ public class TelaLogin extends javax.swing.JFrame {
         Integer validacao = conecta.getFator();
 
         if (validacao > 1) {
-            new DashboardView().setVisible(true);
+            new Tela().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btEntrarActionPerformed
      else {
@@ -263,6 +258,7 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

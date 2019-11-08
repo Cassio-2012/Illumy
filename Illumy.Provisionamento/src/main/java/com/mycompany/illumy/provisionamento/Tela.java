@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.projetoillumy;
+package com.mycompany.illumy.provisionamento;
 
-import Illumy.View.DashboardView;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +33,6 @@ public class Tela extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnSair = new javax.swing.JLabel();
-        btnMonitorar = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -64,20 +62,10 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        btnMonitorar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnMonitorar.setForeground(new java.awt.Color(255, 255, 255));
-        btnMonitorar.setText("Monitorar");
-        btnMonitorar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMonitorarMouseClicked(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Provisionar");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/illumy-navbar (3).png"))); // NOI18N
         jLabel5.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -91,7 +79,6 @@ public class Tela extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMonitorar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -100,8 +87,6 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(btnMonitorar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,11 +226,6 @@ public class Tela extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btProvisionarActionPerformed
 
-    private void btnMonitorarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMonitorarMouseClicked
-        new DashboardView().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnMonitorarMouseClicked
-
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnSairMouseClicked
@@ -287,7 +267,6 @@ public class Tela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btProvisionar;
-    private javax.swing.JLabel btnMonitorar;
     private javax.swing.JLabel btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
