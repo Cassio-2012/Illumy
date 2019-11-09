@@ -10,9 +10,9 @@ public class ConnectionFactory {
     public ConnectionFactory(){
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://servidorlucas.database.windows.net:1433;database=Banco projeto;");
-        dataSource.setUsername("Aluno01191094@servidorlucas");
-        dataSource.setPassword("#Gf46849632841");
+        dataSource.setUrl("jdbc:sqlserver://servidor01191072.database.windows.net:1433;database=BancoProjeto;");
+        dataSource.setUsername("GF01191072@servidor01191072");
+        dataSource.setPassword("#brucebi1808");
     }
 
     public BasicDataSource getDataSource() {
@@ -22,3 +22,6 @@ public class ConnectionFactory {
 
     
 }
+
+
+//jdbc:sqlserver://servidor01191072.database.windows.net:1433;database=BancoProjeto;user=GF01191072@servidor01191072;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;

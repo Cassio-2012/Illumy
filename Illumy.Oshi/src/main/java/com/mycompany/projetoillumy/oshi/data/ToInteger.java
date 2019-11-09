@@ -15,6 +15,5 @@ public class ToInteger {
    Memoria memoria = new Memoria();
    Processador processador = new Processador();
    Armazenamento armazenamento = new Armazenamento(systemInfo.getOperatingSystem().getFileSystem());
-         
-                        
+                                 
 }

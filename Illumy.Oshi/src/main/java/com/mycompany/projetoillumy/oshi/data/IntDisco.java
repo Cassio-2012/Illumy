@@ -55,7 +55,7 @@ public class IntDisco extends ToInteger {
         Double total = getArmazenamentoTotalInt();
         Double livre = getArmazenamentoLivreInt();
         
-        Double porcentagem = ((livre / (total *1024)) *100);
+        Double porcentagem = ((livre / total) *100);
         
         return Math.round(porcentagem);
     }

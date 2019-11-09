@@ -36,7 +36,7 @@ public class InsertRam {
    
         try {
            jdbcTemplate.update(
-                "insert into memoriaRam (espacoLivreGB, memoriaTotalGB, memoriaUsadaGB"
+                "insert into memoriaRam (espacoLivreMB, memoriaTotalGB, memoriaUsadaMB"
                         + ", memoriaUsadaPorcentagem, espacoLivrePorcentagem, fkServidor)"
                 + "values(?,?,?,?,?,?)", disponivel, total, usada, usadaPorcentagem, livrePorcentagem, fkServidor);
              

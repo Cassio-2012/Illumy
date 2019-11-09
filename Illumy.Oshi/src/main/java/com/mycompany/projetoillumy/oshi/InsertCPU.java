@@ -23,7 +23,7 @@ public class InsertCPU {
    
         try {
            jdbcTemplate.update(
-                "insert into CPU (utilizacaoAtual, TempCPU, fkServidor)"
+                "insert into CPU (utilizacaoAtual, fkServidor)"
                 + "values(?,?)", usoCPU,fkServidor);
              
         } catch (Exception e) {
