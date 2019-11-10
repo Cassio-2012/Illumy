@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+ 
+import javax.sql.DataSource;
 
 
 public class DadosBanco {
@@ -18,61 +20,28 @@ public class DadosBanco {
         this.pass = pass;          
     }
 
-    public void validaUser() throws SQLException{
+    public void validation() throws SQLException{
         
      Connection con = new ConnectionFactory().getConnection();
-     PreparedStatement stmt = con.prepareStatement("select NomeUser from usuario");
-
-
+     PreparedStatement stmt = con.prepareStatement("SELECT NomeUser, Senha FROM"
+             + " usuario WHERE NomeUser = ? and Senha =?");
      
-                    ResultSet rs = stmt.executeQuery();
-    
-
-                    while (rs.next()) {
-                     String login = rs.getString("nomeUser");                     
-                     if (login.equals(user)){     
-                            System.out.println("Usuário ok!");
-                            fator ++;
-                            break;
-                         }
-                     else{
-                         System.out.println("Usuário não encontrado!");
-                     }
-                      
-    }
-                    
-                                         
-                                               
-       
+                stmt.setString(1, user);
+                stmt.setString(2, pass);
+                
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    rs.getString("NomeUser");  
+                    rs.getString("Senha"); 
+                    System.out.println("Validação Correta");
+                    fator +=2;
+                }                                     
+                else{
+                     System.out.println("Usuário e/ ou senha incorreto!");
+                }
+                       
     }
     
-    public void validaPass() throws SQLException{
-        
-     Connection con = new ConnectionFactory().getConnection();
-     PreparedStatement stmt = con.prepareStatement("select Senha from usuario");
-
-     
-
-                    ResultSet rs = stmt.executeQuery();
-    
-
-
-                    while (rs.next()) {
-                     String senha = rs.getString("senha");                     
-                     if (senha.equals(pass)){     
-                            System.out.println("Senha ok!");
-                            fator ++;
-                            break;
-                         }
-                     else{
-                         System.out.println("Senha incorreta!");
-                     }
-                      
-    }
-                    
-                                         
-                                                      
-    }
 
     public Integer getFator() {
         return fator;

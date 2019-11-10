@@ -189,15 +189,11 @@ public class TelaLogin extends javax.swing.JFrame {
         String pass = tfSenha.getText();
         DadosBanco conecta = new DadosBanco(user, pass);
         try {
-            conecta.validaUser();
+            conecta.validation();
         } catch (SQLException ex) {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            conecta.validaPass();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         Integer validacao = conecta.getFator();
 
         if (validacao > 1) {

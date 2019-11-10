@@ -24,4 +24,3 @@ public class ConnectionFactory {
 }
 
 
-//jdbc:sqlserver://servidor01191072.database.windows.net:1433;database=BancoProjeto;user=GF01191072@servidor01191072;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
