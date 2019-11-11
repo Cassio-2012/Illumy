@@ -90,7 +90,7 @@ public class TelaDashboard extends javax.swing.JFrame {
                     insert.insertCPU();                                                                          
 
                 }
-            }, 1000, 10000);
+            }, 10000, 30000);
         } catch (Exception e) {
             System.out.println("Erro ao inserir" + e);
         }
@@ -141,7 +141,7 @@ public class TelaDashboard extends javax.swing.JFrame {
                                         
 
                 }
-            }, 1000, 1000);
+            }, 10000, 30000);
         } catch (Exception e) {
             System.out.println("Erro ao inserir" + e);
         }
@@ -171,7 +171,7 @@ public class TelaDashboard extends javax.swing.JFrame {
                     insert.InsertDisco();
 
                 }
-            }, 1000, 1000);
+            }, 10000, 30000);
         } catch (Exception e) {
             System.out.println("Erro ao inserir" + e);
         }
