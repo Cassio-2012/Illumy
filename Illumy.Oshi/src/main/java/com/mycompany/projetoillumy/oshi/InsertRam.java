@@ -1,6 +1,7 @@
 
 package com.mycompany.projetoillumy.oshi;
 
+import Illumy.Configuration.ConnectionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 

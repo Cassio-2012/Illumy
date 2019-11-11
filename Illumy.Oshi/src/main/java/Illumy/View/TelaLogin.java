@@ -1,10 +1,7 @@
 package Illumy.View;
 
-import com.mycompany.projetoillumy.Database.DadosBanco;
+import Illumy.Model.OperacoesSql;
 import java.awt.Color;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -183,29 +180,25 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-//    new URL(getClass().getResource("usuario_2.png"))
         String user = tfUsuario.getText();
         String pass = tfSenha.getText();
-        DadosBanco conecta = new DadosBanco(user, pass);
+        Boolean validacao = false;
+        OperacoesSql StatementsSql = new OperacoesSql();
         try {
-            conecta.validaUser();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            conecta.validaPass();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Integer validacao = conecta.getFator();
+            validacao = StatementsSql.login(pass, user);
 
-        if (validacao > 1) {
-            new DashboardView().setVisible(true);
-            this.dispose();
+            if (validacao) {
+                new DashboardView().setVisible(true);
+                this.dispose();
     }//GEN-LAST:event_btEntrarActionPerformed
-     else {
-            lbCredencial.setText("Usuário e/ou senha incorretos!");
+        else {
+                lbCredencial.setText("Usuário e/ou senha incorretos!");
+                lbCredencial.setForeground(Color.red);
+            }
+        } catch (Exception ex) {
+            lbCredencial.setText("Erro de comunicação com o banco de dados");
             lbCredencial.setForeground(Color.red);
+            System.out.println(ex);
         }
     }
 
