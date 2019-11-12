@@ -12,10 +12,10 @@ public class Processador extends AtributosOshi {
     }
 
     //Valores de atualização por tempo
-    public String getUtilizacaoAtualProcessador() {
+    public Integer getUtilizacaoAtualProcessador() {
         long[] ticks = processador.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        return String.format("%.1f%%", processador.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        return (int)processador.getSystemCpuLoadBetweenTicks(ticks) * 100;
         //return String.format("%.1f%%", hardware.getProcessor().getSystemCpuLoad() * 100);
     }
     //FIM Valores de atualização por tempo

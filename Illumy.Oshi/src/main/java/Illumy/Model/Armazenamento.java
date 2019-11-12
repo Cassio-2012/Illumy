@@ -5,20 +5,20 @@ import oshi.util.FormatUtil;
 
 public class Armazenamento extends AtributosOshi {
 
-    public String getDiscoDisponivel() {
+    public Double getDiscoDisponivel() {
         long disponivel = 0;
         for (OSFileStore fs : fileStoreArray) {
             disponivel += fs.getUsableSpace();
         }
-        return FormatUtil.formatBytes(disponivel);
+        return (double)disponivel;
     }
 
-    public String getDiscoTotal() {
+    public Double getDiscoTotal() {
         long total = 0;
         for (OSFileStore fs : fileStoreArray) {
             total += fs.getTotalSpace();
         }
-        return FormatUtil.formatBytes(total);
+        return (double)total;
     }
 
 }

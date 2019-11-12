@@ -11,13 +11,13 @@ public class Memoria extends AtributosOshi {
         this.memoria = systemInfo.getHardware().getMemory();
     }
 
-    public String getMemoriaTotal() {
-        return FormatUtil.formatBytes(memoria.getTotal());
+    public Double getMemoriaTotal() {
+        return (double)memoria.getTotal();
     }
     
     //Valores de atualização por tempo
-    public String getMemoriaDisponivel() {
-        return FormatUtil.formatBytes(memoria.getAvailable());
+    public Double getMemoriaDisponivel() {
+        return (double)memoria.getAvailable();
     }
     //FIM //Valores de atualização por tempo
 }
