@@ -33,12 +33,17 @@ public class ExibicaoDadosModel {
     }
 
     public void exibeDados() {
+        try{
         view.getLbMemoriaTotal().setText(FormatUtil.formatBytes(memoriaTotal.longValue()));
         view.getLbUsoProcessador().setText(String.format("%1d%%", porcentagemCpu));
         view.getLbMemoriaDisponivel().setText(FormatUtil.formatBytes(memoriaDisponivel.longValue()));
-        view.getLbArmazenamentoDisponivel().setText(FormatUtil.formatBytes(discoTotal.longValue()));
+        view.getLbArmazenamentoDisponivel().setText(FormatUtil.formatBytes(discoDisponivel.longValue()));
         view.getLbArmazenamentoTotal().setText(FormatUtil.formatBytes(discoTotal.longValue()));
         view.getTxaProcessos().setText(processos.getProcessos());
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 
 }

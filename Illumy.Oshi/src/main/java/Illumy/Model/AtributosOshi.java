@@ -13,13 +13,15 @@ public abstract class AtributosOshi {
     protected final OperatingSystem sistemaOperacional;
     protected final FileSystem fileSystem;
     protected final OSFileStore[] fileStoreArray;
+    protected final Integer idServidor;
 
     public AtributosOshi() {
         this.systemInfo = new SystemInfo();
         this.hardware = systemInfo.getHardware();
         this.sistemaOperacional = systemInfo.getOperatingSystem();
         this.fileSystem = systemInfo.getOperatingSystem().getFileSystem();
-       this. fileStoreArray = fileSystem.getFileStores();
+        this.fileStoreArray = fileSystem.getFileStores();
+        this.idServidor = 1;
     }
 
 }

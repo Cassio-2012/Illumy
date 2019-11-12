@@ -11,7 +11,6 @@ public class DadosController {
     
     public DadosController(DashboardView view) {
         exibicaoDadosModel = new ExibicaoDadosModel(view);
-        exibicaoDadosModel.exibeDados();
     }
     
     public void iniciaTimer(){
@@ -21,6 +20,7 @@ public class DadosController {
             timer.scheduleAtFixedRate(new TimerTask() {
 
                 public void run() {
+                    exibicaoDadosModel.getDados();
                     exibicaoDadosModel.exibeDados();
                 }
             }, 1200, 5000);
