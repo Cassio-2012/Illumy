@@ -1,14 +1,20 @@
 package Illumy.View;
 
-import Illumy.Model.OperacoesSql;
+import Illumy.Controller.LoginController;
 import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-public class TelaLogin extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame {
 
-    DashboardView monitora = new DashboardView();
+    DashboardView monitora;
+    LoginController controller;
 
-    public TelaLogin() {
+    public LoginView() {
         initComponents();
+        controller = new LoginController(this);
+        monitora = new DashboardView();
     }
 
     @SuppressWarnings("unchecked")
@@ -180,28 +186,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        String user = tfUsuario.getText();
-        String pass = tfSenha.getText();
-        Boolean validacao = false;
-        OperacoesSql StatementsSql = new OperacoesSql();
-        try {
-            validacao = StatementsSql.login(pass, user);
-
-            if (validacao) {
-                new DashboardView().setVisible(true);
-                this.dispose();
+        controller.login();
     }//GEN-LAST:event_btEntrarActionPerformed
-        else {
-                lbCredencial.setText("Usuário e/ou senha incorretos!");
-                lbCredencial.setForeground(Color.red);
-            }
-        } catch (Exception ex) {
-            lbCredencial.setText("Erro de comunicação com o banco de dados");
-            lbCredencial.setForeground(Color.red);
-            System.out.println(ex);
-        }
-    }
-
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         System.exit(0);
@@ -248,24 +234,37 @@ public class TelaLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaLogin tela = new TelaLogin();
+                LoginView tela = new LoginView();
                 tela.setVisible(true);
 
             }
         });
+    }
+
+    public JLabel getLbCredencial() {
+        return lbCredencial;
+    }
+
+    public JPasswordField getTfSenha() {
+        return tfSenha;
+    }
+
+    public JTextField getTfUsuario() {
+        return tfUsuario;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
