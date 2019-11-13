@@ -2,10 +2,10 @@ var desenvolvimento = false;
 
 var configuracoes = {
     producao: {
-        server: "testexyzwtrtwr.database.windows.net",
-        user: "adminbandtec",
-        password: "b@ndtec2018",
-        database: "gf2018",
+        server: "servidor01191072.database.windows.net",
+        user: "GF01191072",
+        password: "#brucebi1808",
+        database: "ProjetoIllumy",
         options: {
             encrypt: true
         },
@@ -22,11 +22,11 @@ var configuracoes = {
         password: "senhatestes",
         database: "BASETESTE",
         options: {
-            encrypt: true
+            encrypt: false
         }
     }
 }
- 
+
 var sql = require('mssql');
 sql.on('error', err => {
     console.error(`Erro de Conexão: ${err}`);
@@ -35,10 +35,9 @@ sql.on('error', err => {
 var perfil = desenvolvimento ? 'desenvolvimento' : 'producao';
 
 function conectar() {
-  sql.close();
-  return sql.connect(configuracoes[perfil])
-  // return new sql.ConnectionPool();  
-} 
+    return sql.connect(configuracoes[perfil])
+    // return new sql.ConnectionPool();  
+}
 
 module.exports = {
     conectar: conectar,
