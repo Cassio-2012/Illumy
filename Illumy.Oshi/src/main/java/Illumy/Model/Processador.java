@@ -11,7 +11,6 @@ public class Processador extends AtributosOshi {
     private final CentralProcessor processador;
     
     public Processador() {
-        //logger = LoggerFactory.getLogger(Processador.class);
         processador = systemInfo.getHardware().getProcessor();
     }
 
@@ -20,7 +19,9 @@ public class Processador extends AtributosOshi {
         logger.info("Recebendo registro de porcentagem de cpu para Servidor: [{}]", idServidor);
         long[] ticks = processador.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        return (int)(processador.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        Integer porcentagemCpu = (int)(processador.getSystemCpuLoadBetweenTicks(ticks) * 100) ;
+        logger.info("Captura da porcentagem de uso da Cpu [{}%] para o Servidor: [{}]",porcentagemCpu, idServidor);
+        return porcentagemCpu;
     }
     //FIM Valores de atualização por tempo
 }
