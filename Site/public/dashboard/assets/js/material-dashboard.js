@@ -15,6 +15,12 @@
 
  */
 
+import Swal from 'sweetalert2'
+
+// CommonJS
+const Swal = require('sweetalert2')
+
+
 (function() {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
