@@ -36,7 +36,7 @@ var perfil = desenvolvimento ? 'desenvolvimento' : 'producao';
 
 function conectar() {
     return sql.connect(configuracoes[perfil])
-    // return new sql.ConnectionPool();  
+    //return new sql.ConnectionPool();  
 }
 
 module.exports = {

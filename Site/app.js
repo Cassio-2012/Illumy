@@ -22,3 +22,5 @@ app.use('/leituras', leiturasRouter);
 
 
 module.exports = app;
+
+

@@ -41,31 +41,31 @@
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Nome de usuário é um campo obrigatório">
                         <span class="label-input100">Nome de usuário ou e-mail</span>
-                        <input class="input100" type="text" name="email" placeholder="Digite seu usuário ou e-mail">
+                        <input class="input100" type="text" id="email" "name="email" placeholder="Digite seu usuário ou e-mail">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Senha é um campo obrigatório">
                         <span class="label-input100">Senha</span>
-                        <input class="input100" type="password" name="senha" placeholder="Insira sua senha">
+                        <input class="input100" type="password" id="senha" name="senha" placeholder="Insira sua senha">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Telefone é um campo obrigatório">
                         <span class="label-input100">Número para contato</span>
-                        <input class="input100" type="tel" name="telefone" placeholder="Digite seu número de contato">
+                        <input class="input100" type="tel" id="telefone" name="telefone" placeholder="Digite seu número de contato">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Nome da empresa é um campo obrigatório">
                         <span class="label-input100">Nome da empresa ou organização</span>
-                        <input class="input100" type="text" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+                        <input class="input100" type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Digite o nome da empresa">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Endereço é um campo obrigatório">
                         <span class="label-input100">Endereço</span>
-                        <input class="input100" type="text" name="endereco" placeholder="Digite o endereço Ex: Rua abc, 28">
+                        <input class="input100" type="text" id="endereco" name="endereco" placeholder="Digite o endereço Ex: Rua abc, 28">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
@@ -144,10 +144,31 @@
     <script src="js/main.js"></script>
 
     <script>
-
-
         function cadastrar() {
             aguardar();
+
+            /*if (email.value == "" || senha.value == "" || telefone.value == "" || nomeEmpresa.value == "" || endereco.value == "") {
+                alert(`Preencha todos os campos!`);
+                return false;
+            }
+            else {
+
+                //  window.location="privado.html";
+                var formulario = new URLSearchParams(new FormData(form_registro));
+                fetch('/usuarios/cadastrar', {
+                    method: "POST",
+                    body: formulario
+                }).then(function (response) {
+
+                    if (response.ok) {
+                        setTimeout(function () { window.location = '/login/login.html' }, 2000);
+                    } else {
+                        console.log(`Erro no registro.`);
+                    }
+                });
+                return false;
+            }*/
+
             var formulario = new URLSearchParams(new FormData(form_cadastro));
             fetch("/usuarios/cadastrar", {
                 method: "POST",
@@ -174,6 +195,12 @@
             btn_cadastrar.disabled = false;
             div_erro.style.display = 'block';
         }
+
+      
+
+
+
+
     </script>
 
 </body>
