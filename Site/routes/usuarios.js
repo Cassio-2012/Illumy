@@ -71,6 +71,25 @@ router.post('/cadastrar', (req, res, next)=> {
     })
 });
 
+router.post('/servidor',(req, res, next) =>{
+    banco.conectar().then(pool => {
+      console.log(`Chegou p/ cadastro: ${JSON.stringify(req.body)}`);
+      
+      var nome = req.body.nome; 
+      var sistema = req.body.sistema; 
+      var modelo = req.body.modelo;
+     
+
+        return banco.sql.query(`insert into servidores (nomeServidor, sistemaOperacional, modProcessador) values ('${nome}','${sistema}','${modelo}')`);
+    }).then(() => {
+        res.send(200);
+    }).catch(err => {
+        console.log(err);
+    }).finally(() => {
+        banco.sql.close();
+    })
+});
+
 router.post('/entrar', (req, res, next)=> {
 
     banco.conectar().then(() => {
