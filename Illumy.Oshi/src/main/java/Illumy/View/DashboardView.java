@@ -23,7 +23,7 @@ public class DashboardView extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lbArmazenamentoTotal = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        lbArmazenamentoDisponivel = new javax.swing.JLabel();
+        lbArmazenamentoUsado = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -32,7 +32,7 @@ public class DashboardView extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         lbUsoProcessador = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lbMemoriaDisponivel = new javax.swing.JLabel();
+        lbMemoriaUtilizada = new javax.swing.JLabel();
         lbMemoriaTotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -93,11 +93,11 @@ public class DashboardView extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel26.setText("Armazenamento total:");
 
-        lbArmazenamentoDisponivel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbArmazenamentoDisponivel.setText("--");
+        lbArmazenamentoUsado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbArmazenamentoUsado.setText("--");
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel28.setText("Armazenamento disponivel:");
+        jLabel28.setText("Armazenamento Usado:");
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel16.setText("Processos");
@@ -119,10 +119,10 @@ public class DashboardView extends javax.swing.JFrame {
         lbUsoProcessador.setText("--");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Memória Disponivel:");
+        jLabel1.setText("Memória Usada:");
 
-        lbMemoriaDisponivel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbMemoriaDisponivel.setText("--");
+        lbMemoriaUtilizada.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbMemoriaUtilizada.setText("--");
 
         lbMemoriaTotal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbMemoriaTotal.setText("--");
@@ -162,7 +162,7 @@ public class DashboardView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(lbMemoriaDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lbMemoriaUtilizada, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,7 +174,7 @@ public class DashboardView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbArmazenamentoDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lbArmazenamentoUsado, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(257, 257, 257)
                         .addComponent(jLabel16))
@@ -212,11 +212,11 @@ public class DashboardView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lbMemoriaDisponivel))
+                    .addComponent(lbMemoriaUtilizada))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(lbArmazenamentoDisponivel))
+                    .addComponent(lbArmazenamentoUsado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -276,12 +276,12 @@ public class DashboardView extends javax.swing.JFrame {
         return lbUsoProcessador;
     }
 
-    public JLabel getLbArmazenamentoDisponivel() {
-        return lbArmazenamentoDisponivel;
+    public JLabel getLbArmazenamentoUtilizado() {
+        return lbArmazenamentoUsado;
     }
 
-    public JLabel getLbMemoriaDisponivel() {
-        return lbMemoriaDisponivel;
+    public JLabel getLbMemoriaUtilizada() {
+        return lbMemoriaUtilizada;
     }
 
     public JTextArea getTxaProcessos() {
@@ -314,10 +314,10 @@ public class DashboardView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbArmazenamentoDisponivel;
     private javax.swing.JLabel lbArmazenamentoTotal;
-    private javax.swing.JLabel lbMemoriaDisponivel;
+    private javax.swing.JLabel lbArmazenamentoUsado;
     private javax.swing.JLabel lbMemoriaTotal;
+    private javax.swing.JLabel lbMemoriaUtilizada;
     private javax.swing.JLabel lbUsoProcessador;
     private javax.swing.JTextArea txaProcessos;
     // End of variables declaration//GEN-END:variables

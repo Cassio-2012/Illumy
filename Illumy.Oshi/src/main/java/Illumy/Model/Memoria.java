@@ -8,24 +8,26 @@ public class Memoria extends AtributosOshi {
 
     private static final Logger logger = LoggerFactory.getLogger(Memoria.class);
     private final GlobalMemory memoria;
+    private long memoriaTotal;
 
     public Memoria() {
         this.memoria = systemInfo.getHardware().getMemory();
     }
 
-    public Double getMemoriaTotal() {
+    public long getMemoriaTotal() {
         logger.info("Recebendo registro de memória total para Sevidor: [{}]", idServidor);
-        Double memoriaTotal = (double) memoria.getTotal();
+        memoriaTotal = memoria.getTotal();
         logger.info("Captura de Memória total: [{}] para o Servidor: [{}]", memoriaTotal, idServidor);
         return memoriaTotal;
     }
 
     //Valores de atualização por tempo
-    public Double getMemoriaDisponivel() {
-        logger.info("Recebendo registro de memória disponivel para Sevidor: [{}]", idServidor);
-        Double memoriaDisponivel = (double) memoria.getAvailable();
-        logger.info("Captura de Memória disponivel: [{}] para o Servidor: [{}]", memoriaDisponivel, idServidor);
-        return memoriaDisponivel;
+    public Integer getMemoriaUtilizada() {
+        logger.info("Recebendo registro de memória utilizada para Sevidor: [{}]", idServidor);
+        long memoriaUtilizada = memoriaTotal - memoria.getAvailable();
+        Integer porcentagemUsada = (int)((memoriaUtilizada * 100) / memoriaTotal);
+        logger.info("Captura de Memória utilizada: [{}%] para o Servidor: [{}]", porcentagemUsada, idServidor);
+        return porcentagemUsada;
     }
     //FIM //Valores de atualização por tempo
 }

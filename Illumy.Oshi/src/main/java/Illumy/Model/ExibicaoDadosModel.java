@@ -10,11 +10,11 @@ public class ExibicaoDadosModel {
     private final Memoria memoria;
     private final Armazenamento disco;
     private final Processos processos;
-    private Double memoriaTotal;
+    private long memoriaTotal;
     private Integer porcentagemCpu;
-    private Double memoriaDisponivel;
-    private Double discoTotal;
-    private Double discoDisponivel;
+    private Integer memoriaUtilizada;
+    private long discoTotal;
+    private Integer discoUsado;
 
     public ExibicaoDadosModel(DashboardView view) {
         this.view = view;
@@ -27,18 +27,18 @@ public class ExibicaoDadosModel {
     public void getDados() {
         memoriaTotal = memoria.getMemoriaTotal();
         porcentagemCpu = processador.getUtilizacaoAtualProcessador();
-        memoriaDisponivel = memoria.getMemoriaDisponivel();
+        memoriaUtilizada = memoria.getMemoriaUtilizada();
         discoTotal = disco.getDiscoTotal();
-        discoDisponivel = disco.getDiscoDisponivel();
+        discoUsado = disco.getDiscoUtilizado();
     }
 
     public void exibeDados() {
         try{
-        view.getLbMemoriaTotal().setText(FormatUtil.formatBytes(memoriaTotal.longValue()));
+        view.getLbMemoriaTotal().setText(FormatUtil.formatBytes(memoriaTotal));
         view.getLbUsoProcessador().setText(String.format("%1d%%", porcentagemCpu));
-        view.getLbMemoriaDisponivel().setText(FormatUtil.formatBytes(memoriaDisponivel.longValue()));
-        view.getLbArmazenamentoDisponivel().setText(FormatUtil.formatBytes(discoDisponivel.longValue()));
-        view.getLbArmazenamentoTotal().setText(FormatUtil.formatBytes(discoTotal.longValue()));
+        view.getLbMemoriaUtilizada().setText(String.format("%1d%%", memoriaUtilizada));
+        view.getLbArmazenamentoUtilizado().setText(String.format("%1d%%", discoUsado));
+        view.getLbArmazenamentoTotal().setText(FormatUtil.formatBytes(discoTotal));
         view.getTxaProcessos().setText(processos.getProcessos());
         }
         catch(Exception ex){
